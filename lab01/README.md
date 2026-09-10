@@ -4,4 +4,4 @@
 
 нереальное описание кода
 
-![](images\01greeting.png)
+![](lab01\images\01greeting.png)
