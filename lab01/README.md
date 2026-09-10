@@ -4,4 +4,4 @@
 
 нереальное описание кода
 
-![](\images\01greeting.png)
+![load please](\images\01greeting.png)
