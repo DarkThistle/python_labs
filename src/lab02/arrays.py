@@ -1,37 +1,25 @@
-def min_max(num_list):
-    num_list = num_list.strip("[]").split(", ")
-    if "" not in num_list:
-        num_list = list(map(lambda x: float(x) if "." in x else int(x), num_list))
-        return (min(num_list)), max(num_list)
-    return "ValueError"
+
+def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
+    if len(nums) == 0:
+        raise ValueError
+    return max(nums), min(nums)
+
+#print(f"Ввод: {min_max(eval(input("Ввод: ")))}")
 
 
-def unique_sorted(num_list):
-    num_list = num_list.strip("[]").split(", ")
-    if "" not in num_list:
-        num_list = sorted(list(set(list(map(lambda x: float(x) if "." in x else int(x), num_list)))))
-        return num_list
-    else: 
-        return []
+def unique_sorted(nums: list[float | int]) -> list[float | int]:
+    return sorted(set(nums))
 
-def flatten(num_list):
-    num_list = [[int(j) for j in i[i.find("[")+1:i.find("]")].split(", ")] for i in num_list[1:-1].replace("(", "[").replace(")", "]").replace("], [", "].[").split(".")]
-    new_list = []
-    for i in num_list:
-        new_list += i
-    return new_list
+#print(f"Ввод: {unique_sorted(eval(input("Ввод: ")))}")
 
 
-#print(min_max(input()))
-print(flatten(input()))
+def flatten(mat: list[list | tuple]) -> list:
+    res = []
+    for i in mat:
+        if type(i) is not list and type(i) is not tuple:
+            raise TypeError
+        res.extend(i)
+    return res
 
-# [3, -1, 5, 5, 0]
-# [-5, -2, -9] 
-# [42]
-# []
-# [1.5, 2, 2.0, -3.1]
-
-#print(input().strip("[]").split(", "))
-#print(max(["2.0", "2"]))
-#print(int(2.9))
+#print(f"Ввод: {flatten(eval(input("Ввод: ")))}")
 
