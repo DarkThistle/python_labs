@@ -1,8 +1,8 @@
-n = int(input())
+n = int(input("in_1: "))
 ochno = 0
 za_ochno = 0
 for i in range(n):
-    user = input(f"id_{i+1}: ").split()
+    user = input(f"in_{i+2}: ").split()
     if user[-1] == "True":
         ochno += 1
     elif user[-1] == "False":
