@@ -36,15 +36,15 @@
 ## Задание В
 ---
 
-### Функция **transponse**
+### Функция **transpose**
 
 В этой функции я сначала проверил длину списка, если он пустой, то функция возвращает []. Далее проверил длину каждой строки списка, закинул в кортеж и сравнил с единицей. Если строки в матрице имеют неравное количество символов, то функция вызывает ошибку. Далее я вложенными циклами создал создал такую матрицу, какая бы получилась путем транспонирования исходной.
 
-![](/images/lab02/transponse_1.png)
-![](/images/lab02/transponse_2.png)
-![](/images/lab02/transponse_3.png)
-![](/images/lab02/transponse_4.png)
-![](/images/lab02/transponse_5.png)
+![](/images/lab02/transpose_1.png)
+![](/images/lab02/transpose_2.png)
+![](/images/lab02/transpose_3.png)
+![](/images/lab02/transpose_4.png)
+![](/images/lab02/transpose_5.png)
 
 ### Функция **row_sums**
 
