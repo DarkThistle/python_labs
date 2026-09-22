@@ -19,11 +19,11 @@ def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
     return max(nums), min(nums)
 ```
 
-![](/images/lab02/min_max_1.png)
-![](/images/lab02/min_max_2.png)
-![](/images/lab02/min_max_3.png)
-![](/images/lab02/min_max_4.png)
-![](/images/lab02/min_max_5.png)
+![test1](/images/lab02/min_max_1.png)
+![test2](/images/lab02/min_max_2.png)
+![test3](/images/lab02/min_max_3.png)
+![test4](/images/lab02/min_max_4.png)
+![test5](/images/lab02/min_max_5.png)
 
 ---
 
@@ -36,10 +36,10 @@ def unique_sorted(nums: list[float | int]) -> list[float | int]:
     return sorted(set(nums))
 ```
 
-![](/images/lab02/unique_sorted_1.png)
-![](/images/lab02/unique_sorted_2.png)
-![](/images/lab02/unique_sorted_3.png)
-![](/images/lab02/unique_sorted_4.png)
+![test1](/images/lab02/unique_sorted_1.png)
+![test2](/images/lab02/unique_sorted_2.png)
+![test3](/images/lab02/unique_sorted_3.png)
+![test4](/images/lab02/unique_sorted_4.png)
 
 ---
 
@@ -57,10 +57,10 @@ def flatten(mat: list[list | tuple]) -> list:
     return res
 ```
 
-![](/images/lab02/flatten_1.png)
-![](/images/lab02/flatten_2.png)
-![](/images/lab02/flatten_3.png)
-![](/images/lab02/flatten_4.png)
+![test1](/images/lab02/flatten_1.png)
+![test2](/images/lab02/flatten_2.png)
+![test3](/images/lab02/flatten_3.png)
+![test4](/images/lab02/flatten_4.png)
 
 ---
 
@@ -82,11 +82,11 @@ def transpose(mat: list[list[float | int]]) -> list[list]:
     return [[mat[j][i] for j in range(len(mat))]for i in range(len(mat[0]))]
 ```
 
-![](/images/lab02/transpose_1.png)
-![](/images/lab02/transpose_2.png)
-![](/images/lab02/transpose_3.png)
-![](/images/lab02/transpose_4.png)
-![](/images/lab02/transpose_5.png)
+![test1](/images/lab02/transpose_1.png)
+![test2](/images/lab02/transpose_2.png)
+![test3](/images/lab02/transpose_3.png)
+![test4](/images/lab02/transpose_4.png)
+![test5](/images/lab02/transpose_5.png)
 
 ---
 
@@ -100,10 +100,10 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
             raise ValueError
     return list(map(lambda x: sum(x), mat))
 ```
-![](/images/lab02/row_sums_1.png)
-![](/images/lab02/row_sums_2.png)
-![](/images/lab02/row_sums_3.png)
-![](/images/lab02/row_sums_4.png)
+![test1](/images/lab02/row_sums_1.png)
+![test2](/images/lab02/row_sums_2.png)
+![test3](/images/lab02/row_sums_3.png)
+![test4](/images/lab02/row_sums_4.png)
 
 ---
 
@@ -117,10 +117,10 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
                 raise ValueError
     return [sum([mat[j][i] for j in range(len(mat))]) for i in range(len(mat[0]))]
 ```
-![](/images/lab02/col_sums_1.png)
-![](/images/lab02/col_sums_2.png)
-![](/images/lab02/col_sums_3.png)
-![](/images/lab02/col_sums_4.png)
+![test1](/images/lab02/col_sums_1.png)
+![test2](/images/lab02/col_sums_2.png)
+![test3](/images/lab02/col_sums_3.png)
+![test4](/images/lab02/col_sums_4.png)
 
 ---
 
@@ -142,7 +142,7 @@ def format_record(rec: tuple[str, str, float]) -> str:
     return f"{name[0]} {" ".join([i[0]+"." for i in name[1:]])}, гр. {rec[1]}, GPA {rec[2]:.02f}"
 ```
 
-![](/images/lab02/format_record_1.png)
-![](/images/lab02/format_record_2.png)
-![](/images/lab02/format_record_3.png)
-![](/images/lab02/format_record_4.png)
+![test1](/images/lab02/format_record_1.png)
+![test2](/images/lab02/format_record_2.png)
+![test3](/images/lab02/format_record_3.png)
+![test4](/images/lab02/format_record_4.png)
