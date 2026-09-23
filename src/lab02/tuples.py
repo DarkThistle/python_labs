@@ -1,10 +1,13 @@
 def format_record(rec: tuple[str, str, float]) -> str:
-    if rec[0] == "" or rec[1] == "":
+    if rec[0] + rec[-1] == "()":
+        rec = eval(rec)
+    else:
         raise ValueError
-    if type(rec[2]) != float:
+    if rec[0] == "" or rec[1] == "" or len(rec) != 3 or len(rec[0].split()) not in [2, 3] or any([rec[1][i]=="-" for i in [0, -1]]) or not all([i.isalnum() for i in rec[1].split("-")]):
+        raise ValueError
+    if type(rec[2]) != float or type(rec) != tuple:
         raise TypeError
     name = [i.capitalize() for i in rec[0].split()]
     return f"{name[0]} {" ".join([i[0]+"." for i in name[1:]])}, гр. {rec[1]}, GPA {rec[2]:.02f}"
 
-print(format_record(eval(input())))
-
+print(f"Вывод: {format_record(input("Ввод: "))}")

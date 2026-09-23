@@ -6,7 +6,7 @@ def transpose(mat: list[list[float | int]]) -> list[list]:
         raise ValueError
     return [[mat[j][i] for j in range(len(mat))]for i in range(len(mat[0]))]
 
-#print(f"Ввод: {transpose(eval(input("Ввод: ")))}")
+#print(f"Вывод: {transpose(eval(input("Ввод: ")))}")
 
 
 def row_sums(mat: list[list[float | int]]) -> list[float]:
@@ -14,7 +14,7 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
             raise ValueError
     return list(map(lambda x: sum(x), mat))
 
-#print(f"Ввод: {row_sums(eval(input("Ввод: ")))}")
+#print(f"Вывод: {row_sums(eval(input("Ввод: ")))}")
 
 
 def col_sums(mat: list[list[float | int]]) -> list[float]:
@@ -22,4 +22,4 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
                 raise ValueError
     return [sum([mat[j][i] for j in range(len(mat))]) for i in range(len(mat[0]))]
 
-#print(f"Ввод: {col_sums(eval(input("Ввод: ")))}")
+print(f"Вывод: {col_sums(eval(input("Ввод: ")))}")

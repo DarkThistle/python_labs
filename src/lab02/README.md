@@ -146,3 +146,8 @@ def format_record(rec: tuple[str, str, float]) -> str:
 ![test2](/images/lab02/format_record_2.png)
 ![test3](/images/lab02/format_record_3.png)
 ![test4](/images/lab02/format_record_4.png)
+![test5](/images/lab02/format_record_5.png)
+![test6](/images/lab02/format_record_6.png)
+![test7](/images/lab02/format_record_7.png)
+![test8](/images/lab02/format_record_8.png)
+![test9](/images/lab02/format_record_9.png)
