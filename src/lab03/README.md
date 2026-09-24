@@ -8,7 +8,7 @@
 
 ### Функция **normalize**
 
-В этой функцие я проверил длину словаря на наличие элементов и написал вызов ошибки при их отстуствии. Далее я просто вернул минимальное и максимальное значение через запятую, что на выходе создает кортеж из этих элементов.
+В этой функции я проверил аргумент функции **casefold**, если он равен **True**, переводим текст в нижний регистр. Если **yo2e** равно **True**, программа заменяет все буквы ё/Ё на е/Е. Вконце я заменил все управляющие символы \t, \r, \n на пробел. В конце я преобразовал текст в список, а потом соединил все обратно в строку.
 
 ```python
 def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
@@ -32,7 +32,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 
 ### Функция **tokenize**
 
-Тут я просто вернул отсортированное множество элементов списка **nums**.
+Тут я перебрал циклом поданный текст и проверил, чтобы символ тире не оказался в начале или в конце слов. Потом убрал все символы, которые не являются буквами или цифрами. В конц вывел список слов строки.
 
 ```python
 def tokenize(text: str) -> list[str]:
@@ -56,7 +56,7 @@ def tokenize(text: str) -> list[str]:
 
 ### Функция **count_freq**
 
-Тут я прошел циклом по матрице, проверяя тип элементов. Если элемнет не являлся матрицей или кортежем, я вызывал ошибку. В ином случае расширял список **res** элементами исходного списка.
+В этой функции я вывел словарь, ключами которого являются слова, полученные сортировкой униальных слов входного списка, а значениями - их частота появления в входном списке.
 
 ```python
 def count_freq(tokens: list[str]) -> dict[str, int]:
@@ -71,7 +71,7 @@ def count_freq(tokens: list[str]) -> dict[str, int]:
 
 ### Функция **top_n**
 
-Тут я прошел циклом по матрице, проверяя тип элементов. Если элемнет не являлся матрицей или кортежем, я вызывал ошибку. В ином случае расширял список **res** элементами исходного списка.
+Здесь я создал пустой список **res** и счетчик **с**. Далее сначала прошел циклом по значениям отсортированного входного словаря и потом уже по ключам того же словаря. И если значение **i** совпадало со значением ключа **freq[j]**, в список **res** записывался кортеж, состоящий из слова и его частоты появления, и к счетчику прибавлялась единица. В конце, если счетчик совпадет с аргументом **n**, цикл прерывается.
 
 ```python
 def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
@@ -93,90 +93,52 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
 
 ---
 
-## Задание В
+## Задание B — src/text_stats.py
 
 ---
 
 ### Функция **transpose**
 
-В этой функции я сначала проверил длину списка, если он пустой, то функция возвращает []. Далее проверил длину каждой строки списка, закинул в кортеж и сравнил с единицей. Если строки в матрице имеют неравное количество символов, то функция вызывает ошибку. Далее я вложенными циклами создал создал такую матрицу, какая бы получилась путем транспонирования исходной.
+Тут я сначала завел 3 переменные, которым присвоил результат функций из задания **text.py**. Далее создал еще три переменные, в первой длина текста **token_text**, во второй длина **word_freq** и в третьей топ 5 самых частовтречаемых слов переменной **word_freq**. Потом следует часть кода, которая выводит сколько всего слов, сколько уникальных слов и топ 5 популярных слов.
 
 ```python
-def transpose(mat: list[list[float | int]]) -> list[list]:
-    trans = []
-    if len(mat) == 0:
-        return []
-    if len(set(map(lambda x: len(x), mat))) > 1:
-        raise ValueError
-    return [[mat[j][i] for j in range(len(mat))]for i in range(len(mat[0]))]
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from lib.text import normalize, tokenize, count_freq, top_n
+
+def text_stats(textik, flag=False):
+
+    norm_text = normalize(textik)
+    token_text = tokenize(norm_text)
+    word_freq = count_freq(token_text)
+
+    words_num = len(token_text)
+    unique_num = len(word_freq)
+    top_5 = top_n(word_freq)
+    
+    if flag == False:
+
+        return f"Всего слов: {words_num}\nУникальных слов: {unique_num}\nТоп-5: \n{"\n".join([":".join([i[0], str(i[1])]) for i in top_5])}"
+
+    max_len = max(max([len(i[0]) for i in top_5]), len("слово"))
+    max_len_len = max(max([len(str(len(i[0]))) for i in top_5]), len('частота'))
+
+    return f'{"слово".ljust(max_len) + " | " + "частота".ljust(max_len_len)}\n{"-" * max_len + "---" + "-" * max_len_len}\n{"\n".join([i[0].ljust(max_len) + " | " + str(i[1]).ljust(max_len_len) for i in top_5])}'
+
+print(text_stats(input("Ввод: "), flag=[True, False][input("Табличный режим: ").lower() == "false"]))
 ```
 
-![test1](/images/lab02/transpose_1.png)
-![test2](/images/lab02/transpose_2.png)
-![test3](/images/lab02/transpose_3.png)
-![test4](/images/lab02/transpose_4.png)
-![test5](/images/lab02/transpose_5.png)
+![test1](/images/lab03/table_text_stats_1.png)
+![test1](/images/lab03/text_stats_2.png)
 
 ---
 
-### Функция **row_sums**
+### ★ Дополнительно (со звёздочкой)
 
-Тут я снова проверил матрицу на наличие неравных строк, если они есть, функция вызывает ошибку. Потом вернул список, содержащий функцию **map** применяющюю сумирование элементов к каждой строке исходной матрицы.
+В выше описанный код я добавил способ вывода наиболее встречаемых слов в виде таблицы.
 
-```python
-def row_sums(mat: list[list[float | int]]) -> list[float]:
-    if len(set(map(lambda x: len(x), mat))) > 1:
-            raise ValueError
-    return list(map(lambda x: sum(x), mat))
-```
-![test1](/images/lab02/row_sums_1.png)
-![test2](/images/lab02/row_sums_2.png)
-![test3](/images/lab02/row_sums_3.png)
-![test4](/images/lab02/row_sums_4.png)
-
----
-
-### Функция **col_sums**
-
-Здесь с помощью условия определил "рваная" матрица или нет. И потом ко всем строкам транспонированной исходной матрицы применил функцию **sum**.
-
-```python
-def col_sums(mat: list[list[float | int]]) -> list[float]:
-    if len(set(map(lambda x: len(x), mat))) > 1:
-                raise ValueError
-    return [sum([mat[j][i] for j in range(len(mat))]) for i in range(len(mat[0]))]
-```
-![test1](/images/lab02/col_sums_1.png)
-![test2](/images/lab02/col_sums_2.png)
-![test3](/images/lab02/col_sums_3.png)
-![test4](/images/lab02/col_sums_4.png)
-
----
-
-## Задание С
-
----
-
-### Функция **format_record**
-
-В этой функции я сначала проверил данные на корректность. Первые два элемента я сравнил с пустой строкой, и если они совпадают, функция вызывает ошибку **ValueError**. Если тип третьего элемента не вещественный, то происходит вызов ошибки **TypeError**. Далее я озаглавил первую букву в каждом слове превого элемента, превратив его в список и применив функцию **capitalize** к ФИО. В конце собрал все элементы в **f-строку** и вывел на экран.
-
-```python
-def format_record(rec: tuple[str, str, float]) -> str:
-    if rec[0] == "" or rec[1] == "":
-        raise ValueError
-    if type(rec[2]) != float:
-        raise TypeError
-    name = [i.capitalize() for i in rec[0].split()]
-    return f"{name[0]} {" ".join([i[0]+"." for i in name[1:]])}, гр. {rec[1]}, GPA {rec[2]:.02f}"
-```
-
-![test1](/images/lab02/format_record_1.png)
-![test2](/images/lab02/format_record_2.png)
-![test3](/images/lab02/format_record_3.png)
-![test4](/images/lab02/format_record_4.png)
-![test5](/images/lab02/format_record_5.png)
-![test6](/images/lab02/format_record_6.png)
-![test7](/images/lab02/format_record_7.png)
-![test8](/images/lab02/format_record_8.png)
-![test9](/images/lab02/format_record_9.png)
+![test1](/images/lab03/text_stats_1.png)
+![test1](/images/lab03/table_text_stats_2.png)
