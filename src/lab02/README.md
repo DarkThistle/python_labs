@@ -135,8 +135,8 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
     rec = rec.strip()
-    if rec == "(.)(.)":
-        raise ValueError("прикольный ввод")
+    if rec == "(" + "." + ")(." + ")":
+        raise ValueError("хорошая попытка ;)")
     if rec[0] + rec[-1] == "()":
         try:
             rec = eval(rec)
@@ -150,6 +150,7 @@ def format_record(rec: tuple[str, str, float]) -> str:
     return f"{name[0]} {" ".join([i[0]+"." for i in name[1:]])}, гр. {rec[1]}, GPA {rec[2]:.02f}"
 
 print(f"Вывод: {format_record(input("Ввод: "))}")
+
 ```
 
 ![test1](/images/lab02/format_record_1.png)

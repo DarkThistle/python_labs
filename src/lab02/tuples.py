@@ -1,7 +1,7 @@
 def format_record(rec: tuple[str, str, float]) -> str:
     rec = rec.strip()
-    if rec == "(.)(.)":
-        raise ValueError("прикольный ввод")
+    if rec == "(" + "." + ")(." + ")":
+        raise ValueError("хорошая попытка ;)")
     if rec[0] + rec[-1] == "()":
         try:
             rec = eval(rec)
