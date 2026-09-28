@@ -21,7 +21,7 @@ def tokenize(text: str) -> list[str]:
             text = text.replace(text[i], " ")
     return text.split()
 
-#print(f"Вывод: {tokenize(input("Ввод: "))}")
+print(f"Вывод: {tokenize(input("Ввод: "))}")
 
 def count_freq(tokens: list[str]) -> dict[str, int]:
     tokens = dict(zip(sorted(set(tokens)), [tokens.count(i) for i in sorted(set(tokens))]))

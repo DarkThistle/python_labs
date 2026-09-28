@@ -142,7 +142,7 @@ def format_record(rec: tuple[str, str, float]) -> str:
             rec = eval(rec)
         except SyntaxError:
             raise ValueError
-    if len(rec) == 0 or rec[0] == "" or rec[1] == "" or len(rec) != 3 or len(rec[0].split()) not in [2, 3] or any([rec[1][i]=="-" for i in [0, -1]]) or not all([i.isalnum() for i in rec[1].split("-")]):
+    if not 0.0 <= rec[2] <= 5.0 or len(rec) == 0 or rec[0] == "" or rec[1] == "" or len(rec) != 3 or len(rec[0].split()) not in [2, 3] or any([rec[1][i]=="-" for i in [0, -1]]) or not all([i.isalnum() for i in rec[1].split("-")]):
         raise ValueError
     if type(rec[2]) != float or type(rec) != tuple:
         raise TypeError
@@ -150,7 +150,6 @@ def format_record(rec: tuple[str, str, float]) -> str:
     return f"{name[0]} {" ".join([i[0]+"." for i in name[1:]])}, гр. {rec[1]}, GPA {rec[2]:.02f}"
 
 print(f"Вывод: {format_record(input("Ввод: "))}")
-
 ```
 
 ![test1](/images/lab02/format_record_1.png)
