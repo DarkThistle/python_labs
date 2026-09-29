@@ -16,7 +16,16 @@
 def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
     if len(nums) == 0:
         raise ValueError
-    return max(nums), min(nums)
+    mini = nums[0]
+    maxi = nums[0]
+    for i in nums:
+        if i < mini:
+            mini = i
+        if i > maxi:
+            maxi = i
+    return mini, maxi
+    
+print(f"Вывод: {min_max(eval(input("Ввод: ")))}")
 ```
 
 ![test1](/images/lab02/min_max_1.png)
@@ -33,7 +42,15 @@ def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
 
 ```python
 def unique_sorted(nums: list[float | int]) -> list[float | int]:
+    nums = list(set(nums))
+    res = [nums[0]]
+    while not(all([nums[i] <= nums[i+1] for i in range(len(nums) - 1)])):
+        for k in range(len(nums)-1):
+            if nums[k] > nums[k+1]:
+                nums[k], nums[k+1] = nums[k+1], nums[k]
     return sorted(set(nums))
+
+print(f"Вывод: {unique_sorted(eval(input("Ввод: ")))}")
 ```
 
 ![test1](/images/lab02/unique_sorted_1.png)
