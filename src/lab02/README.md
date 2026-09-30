@@ -48,7 +48,7 @@ def unique_sorted(nums: list[float | int]) -> list[float | int]:
         for k in range(len(nums)-1):
             if nums[k] > nums[k+1]:
                 nums[k], nums[k+1] = nums[k+1], nums[k]
-    return sorted(set(nums))
+    return nums
 
 print(f"Вывод: {unique_sorted(eval(input("Ввод: ")))}")
 ```
