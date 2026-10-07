@@ -8,8 +8,9 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 
     return " ".join(text)
 
-test1 = "2025 год"
-print(f"Ввод: {test1}\nВывод: {normalize(test1)}")
+test = "2025 год"
+#print(f"Ввод: {test}")
+#print(f"Вывод: {normalize(test)}")
 
 
 def tokenize(text: str) -> list[str]:
@@ -22,13 +23,15 @@ def tokenize(text: str) -> list[str]:
             text = text.replace(text[i], " ")
     return text.split()
 
-#print(f"Вывод: {tokenize(input("Ввод: "))}")
+#print(f"Ввод: {test}")
+#print(f"Вывод: {tokenize(test)}")
 
 def count_freq(tokens: list[str]) -> dict[str, int]:
     tokens = dict(zip(sorted(set(tokens)), [tokens.count(i) for i in sorted(set(tokens))]))
     return tokens
 
-#print(f"Вывод: {count_freq(eval(input("Ввод: ")))}")
+#print(f"Ввод: {test}")
+#print(f"Вывод: {count_freq(test)}")
 
 
 def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
@@ -44,4 +47,5 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
                 break
     return res
 
-#print(f"Вывод: {top_n(eval(input("Ввод: ")), n=2)}")
+#print(f"Ввод: {test}")
+#print(f"Вывод: {top_n(test)}")
