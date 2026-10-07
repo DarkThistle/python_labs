@@ -151,22 +151,36 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
 
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
-    rec = rec.strip()
-    if rec == "(" + "." + ")(." + ")":
-        raise ValueError("хорошая попытка ;)")
-    if rec[0] + rec[-1] == "()":
-        try:
-            rec = eval(rec)
-        except SyntaxError:
-            raise ValueError
-    if not 0.0 <= rec[2] <= 5.0 or len(rec) == 0 or rec[0] == "" or rec[1] == "" or len(rec) != 3 or len(rec[0].split()) not in [2, 3] or any([rec[1][i]=="-" for i in [0, -1]]) or not all([i.isalnum() for i in rec[1].split("-")]):
+    if type(rec) != tuple:
+        raise TypeError("Прошу умоляю введите кортеж")
+    if len(rec) == 0 or not 0.0 <= rec[2] <= 5.0 or rec[0] == "" or rec[1] == "" or len(rec) < 3 or len(rec[0].split()) not in [2, 3] or any([rec[1][i]=="-" for i in [0, -1]]) or not all([i.isalnum() for i in rec[1].split("-")]):
         raise ValueError
-    if type(rec[2]) != float or type(rec) != tuple:
+    if type(rec[2]) != float or type(rec[0]) != str or type(rec[1]) != str:
         raise TypeError
     name = [i.capitalize() for i in rec[0].split()]
     return f"{name[0]} {" ".join([i[0]+"." for i in name[1:]])}, гр. {rec[1]}, GPA {rec[2]:.02f}"
 
-print(f"Вывод: {format_record(input("Ввод: "))}")
+test = ("Шубкин Александр аНДРЕЕВИЧ", "легенды-777", 4.9999999999999999999, "Барнаул", 34)
+
+#("Иванов Иван Иванович", "BIVT-25", 4.6)
+#("Петров Пётр", "IKBO-12", 5.0)
+#("Петров Пётр Петрович", "IKBO-12", 5.0)
+#("", "IKBO-12", 5.0)
+#("Петров Пётр Петрович", "", 5.0)
+#("", "", 5.0)
+#(5.0)
+#()
+#("Петров Пётр Петрович", "IKBO-12", 5.1)
+#("Петров Пётр Петрович", "IKBO-12", 5)
+#("IKBO-12", "Петров Пётр Петрович", 5.0)
+#("  сидорова  анна   сергеевна ", "ABB-01", 3.999)
+#"hochu zachet"
+#"(.)(.)"
+#("pozjaluista")
+#("Шубкин Александр аНДРЕЕВИЧ", "группа-5", 4.9999999999999999999, "Барнаул", 34)
+
+print(f"Ввод: {test}")
+print(f"Вывод: {format_record(test)}")
 ```
 
 ![test1](/images/lab02/format_record_1.png)
@@ -177,4 +191,9 @@ print(f"Вывод: {format_record(input("Ввод: "))}")
 ![test6](/images/lab02/format_record_6.png)
 ![test7](/images/lab02/format_record_7.png)
 ![test8](/images/lab02/format_record_8.png)
-![test9](/images/lab02/format_record_9.png)
+![test8](/images/lab02/format_record_9.png)
+![test8](/images/lab02/format_record_10.png)
+![test8](/images/lab02/format_record_11.png)
+![test8](/images/lab02/format_record_12.png)
+![test8](/images/lab02/format_record_13.png)
+![test8](/images/lab02/format_record_14.png)

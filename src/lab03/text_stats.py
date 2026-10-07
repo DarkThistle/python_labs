@@ -16,10 +16,17 @@ def text_stats(textik, flag=False):
     top_5 = top_n(word_freq)
     
     if flag == False:
+        top_pyat = "\n".join([":".join([i[0], str(i[1])]) for i in top_5])
 
-        return f"Всего слов: {words_num}\nУникальных слов: {unique_num}\nТоп-5: \n{"\n".join([":".join([i[0], str(i[1])]) for i in top_5])}"
+        return f"Всего слов: {words_num}\nУникальных слов: {unique_num}\nТоп-5: \n{top_pyat}"
+    
     max_len = max(max([len(i[0]) for i in top_5]), len("слово"))
     max_len_len = max(max([len(str(len(i[0]))) for i in top_5]), len('частота'))
-    return f'{"слово".ljust(max_len) + " | " + "частота".ljust(max_len_len)}\n{"-" * max_len + "---" + "-" * max_len_len}\n{"\n".join([i[0].ljust(max_len) + " | " + str(i[1]).ljust(max_len_len) for i in top_5])}'
+
+    first_line = "слово".ljust(max_len) + " | " + "частота".ljust(max_len_len)
+    second_line = "-" * max_len + "---" + "-" * max_len_len
+    other_lines = "\n".join([i[0].ljust(max_len) + " | " + str(i[1]).ljust(max_len_len) for i in top_5])
+    
+    return f'{first_line}\n{second_line}\n{other_lines}'
 
 print(text_stats(input("Ввод: "), flag=[True, False][input("Табличный режим: ").lower() == "false"]))
