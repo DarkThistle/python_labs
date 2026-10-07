@@ -24,8 +24,6 @@ def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
         if i > maxi:
             maxi = i
     return mini, maxi
-    
-print(f"Вывод: {min_max(eval(input("Ввод: ")))}")
 ```
 
 ![test1](/images/lab02/min_max_1.png)
@@ -49,8 +47,6 @@ def unique_sorted(nums: list[float | int]) -> list[float | int]:
             if nums[k] > nums[k+1]:
                 nums[k], nums[k+1] = nums[k+1], nums[k]
     return nums
-
-print(f"Вывод: {unique_sorted(eval(input("Ввод: ")))}")
 ```
 
 ![test1](/images/lab02/unique_sorted_1.png)
