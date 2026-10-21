@@ -1,8 +1,3 @@
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from lib.text import normalize, tokenize, count_freq, top_n
 
 def text_stats(textik, flag=False):

@@ -1,1 +1,0 @@
-# vibe coding is cringe
