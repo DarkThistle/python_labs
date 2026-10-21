@@ -155,4 +155,4 @@ def main():
         print(f"{word}: {count}")
 ```
 
-![test1](/images/lab04/text_report.png)
+![test3](/images/lab04/text_report.png)
