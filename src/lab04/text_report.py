@@ -1,38 +1,46 @@
+import argparse
+from pathlib import Path
 from src.lab04.io_txt_csv import read_text, write_csv
 from src.lib.text import normalize, tokenize, count_freq, top_n
 
-input = "data/lab04/input.txt"
-output = "data/lab04/report.csv"
-encode = "utf-8"
-
-
-def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]:
-    return sorted(freq.items(), key=lambda pair: (-pair[1], pair[0]))
-
-
 def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--in",
+        dest="input_file",
+        type=Path,
+        required=True,
+    )
+
+    parser.add_argument(
+        "--out",
+        dest="output_file",
+        type=Path,
+        required=True,
+    )
+
+    args = parser.parse_args()
+
     try:
-        raw_text = read_text(input, encoding=encode)
+        raw_text = read_text(args.input_file, encoding="utf-8")
     except FileNotFoundError:
-        print(f"Ошибка: файл не найден: {input}")
+        raise FileNotFoundError(f"Ошибка: файл не найден: {args.input_file}")
 
-    normalized_text = normalize(raw_text)
-    tokenized_text = tokenize(normalized_text)
-    total_words = len(tokenized_text)
+    norm_text = normalize(raw_text)
+    token_text = tokenize(norm_text)
+    word_freq = count_freq(token_text)
 
-    freq = count_freq(tokenized_text)
-    unique_words = len(freq)
+    words_num = len(token_text)
+    unique_num = len(word_freq)
+    top_5 = top_n(word_freq)
 
-    all_rows = sorted_word_counts(freq)
-    top5 = top_n(freq, n=5)
+    all_rows = sorted(word_freq.items(), key=lambda x: (-x[1], x[0]))
+    top_pyat = "\n".join([",".join([i[0], str(i[1])]) for i in top_5])
 
-    write_csv(all_rows, output, header=("word", "count"))
-
-    print(f"Всего слов: {total_words}")
-    print(f"Уникальных слов: {unique_words}")
-    print("Топ-5: ")
-    for word, count in top5:
-        print(f"{word}: {count}")
+    write_csv(all_rows, args.output_file, header=("word", "count"))
+    
+    print(f"Всего слов: {words_num}\nУникальных слов: {unique_num}\nТоп-5: \n{top_pyat}")
 
 
 if __name__ == "__main__":

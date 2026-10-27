@@ -31,9 +31,9 @@ def read_text(path: str | Path,
         with open(path, "r", encoding=encoding) as text:
             return text.read()
     except FileNotFoundError:
-        return "Файл не найден!"
+        raise FileNotFoundError("Файл не найден!")
     except UnicodeDecodeError:
-        return "Ошибка кодировки! Попробуйте указать encoding='utf-8'"
+        raise UnicodeDecodeError("Ошибка кодировки! Попробуйте указать encoding='utf-8'")
 
 
 def write_csv(rows: Iterable[Sequence], 

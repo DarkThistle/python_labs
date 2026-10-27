@@ -8,7 +8,6 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 
     return " ".join(text)
 
-test = "2025 год"
 #print(f"Ввод: {test}")
 #print(f"Вывод: {normalize(test)}")
 
