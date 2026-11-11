@@ -1,4 +1,4 @@
-from lib.text import normalize, tokenize, count_freq, top_n
+from src.lib.text import normalize, tokenize, count_freq, top_n
 
 def text_stats(textik, flag=False):
 
@@ -24,4 +24,3 @@ def text_stats(textik, flag=False):
     
     return f'{first_line}\n{second_line}\n{other_lines}'
 
-print(text_stats(input("Ввод: "), flag=[True, False][input("Табличный режим: ").lower() == "false"]))

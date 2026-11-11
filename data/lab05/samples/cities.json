@@ -7,12 +7,12 @@
   {
     "city": "Moscow",
     "country": "Russia",
-    "population": "13010112"
+    "population": null
   },
   {
     "city": "Kazan",
     "country": "Russia",
-    "population": "1306953"
+    "population": ""
   },
   {
     "city": "Novosibirsk",
